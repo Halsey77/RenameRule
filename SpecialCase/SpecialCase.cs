@@ -19,5 +19,11 @@ namespace SpecialCase
             string res = fileName.First().ToString().ToUpper() + fileName.Substring(1) + Path.GetExtension(origin);
             return res;
         }
+       
+
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            return new SpecialCase();
+        }
     }
 }

@@ -20,6 +20,12 @@ namespace UpperCase
             string res = fileName.ToUpper() + Path.GetExtension(origin);
             return res;
         }
+   
+
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            return new UpperCase();
+        }
     }
  
    

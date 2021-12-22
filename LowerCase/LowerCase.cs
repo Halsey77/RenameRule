@@ -19,5 +19,10 @@ namespace LowerCase
             string res = fileName.ToLower() + Path.GetExtension(origin);
             return res;
         }
+       
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            return new LowerCase();
+        }
     }
 }

@@ -32,6 +32,17 @@ namespace Replacer
             }
             return res;
         }
+        //a b
+      
+
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            string firstString = origin.Substring(0, origin.IndexOf(' '));
+            _needle= firstString;
+            string secondString=origin.Substring(origin.IndexOf(' ') + 1);  
+            _hammer= secondString;
+            return new Replacer();
+        }
     }
 
   

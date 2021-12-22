@@ -16,6 +16,11 @@ namespace PerfectCase
         {
             get { return "PerfectCase"; }
         }
+        /// <summary>
+      
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <returns></returns>
         public string Process(string origin)
         {
 
@@ -53,7 +58,11 @@ namespace PerfectCase
             return res;
 
         }
-
+       
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            return new PerfectCase();
+        }
     }
 
 }

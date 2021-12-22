@@ -14,6 +14,12 @@ namespace UniqueCase
         {
             get { return "UniqueCase"; }
         }
+
+        IRenameRule IRenameRule.Parse(string origin)
+        {
+            return new UniqueCase();
+        }
+
         public string Process(string origin)
         {
             string fileName = Path.GetFileNameWithoutExtension(origin);

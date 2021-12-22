@@ -13,7 +13,9 @@ namespace RenameRules
 
         string Name { get; }
 
-        
+        //void Parser(string line);
+
+         IRenameRule Parse(string origin);
 
     }
    
