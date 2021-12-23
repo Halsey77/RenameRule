@@ -13,18 +13,25 @@ namespace RenameFactory
     public class RenameFactory
     {
         Dictionary<string, IRenameRule> _prototypes;
-        RenameFactory _instance = null;
-
-        IRenameRule Create(string choice)
+        static RenameFactory _instance = null;
+        public IRenameRule Create(string choice)
         {
-            string firstWord = choice.Substring(0, choice.IndexOf(' '));
-            string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
-            return _prototypes[firstWord].Parse(choice1);
+            if(choice.IndexOf(' ')==-1)
+            {
+                return _prototypes[choice].Parse(choice);
+            }
+          
+            else
+            {
+                string firstWord = choice.Substring(0, choice.IndexOf(' '));
+                string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
+                return _prototypes[firstWord].Parse(choice1);
+            }
             // LAY CHU DAU , NEU CHU DAU =
             // STRING CHOICE1
             // _pROTOTYPES[[choice - 1].pARSE(CHOICE- CHOICE1);
         }
-        RenameFactory getInstance()
+        public static RenameFactory  getInstance()
         {
             if (_instance == null)
                 _instance = new RenameFactory();
@@ -40,6 +47,7 @@ namespace RenameFactory
             {
                 var assembly = Assembly.LoadFile(dll.FullName);
                 var types = assembly.GetTypes();
+               
 
                 foreach (var type in types)
                 {

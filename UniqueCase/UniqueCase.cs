@@ -21,5 +21,10 @@ namespace UniqueCase
             string res = fileName + originalGuild;
             return res;
         }
+
+        public IRenameRule Clone()
+        {
+            return new UniqueCase();
+        }
     }
 }

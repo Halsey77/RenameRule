@@ -17,6 +17,8 @@ namespace RenameRules
 
          IRenameRule Parse(string origin);
 
+         IRenameRule Clone();
+
     }
    
 }

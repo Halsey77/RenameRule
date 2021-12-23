@@ -14,7 +14,11 @@ namespace Replacer
         public string _needle { get; set; }
         public string _hammer { get; set; }
         public string Name => "Replacer";
-
+        public Replacer()
+        {
+            _needle = "";
+            _hammer = "";
+        }
         public Replacer(string needle, string hammer)
         {
             _needle = needle;
@@ -39,6 +43,11 @@ namespace Replacer
             string secondString=origin.Substring(origin.IndexOf(' ') + 1);
             
             return new Replacer(firstString, secondString);
+        }
+
+        public IRenameRule Clone()
+        {
+            return new Replacer(_needle,_hammer);
         }
     }
 

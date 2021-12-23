@@ -7,6 +7,11 @@ namespace SpecialCase
     {
         public string Name => "SpecialCase";
 
+        public IRenameRule Clone()
+        {
+            return new SpecialCase();
+        }
+
         public string Process(string origin)
         {
             return Regex.Replace(origin, @"^(\s*[^\s])", m => m.ToString().ToUpper());

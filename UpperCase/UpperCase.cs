@@ -12,6 +12,11 @@ namespace UpperCase
     {
         public string Name => "UpperCase";
 
+        public IRenameRule Clone()
+        {
+            return new UpperCase();
+        }
+
         public string Process(string origin)
         {
             string fileName = Path.GetFileNameWithoutExtension(origin);

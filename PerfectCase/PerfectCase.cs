@@ -18,6 +18,11 @@ namespace PerfectCase
             get { return "PerfectCase"; }
         }
 
+        public IRenameRule Clone()
+        {
+            return new PerfectCase();
+        }
+
         public string Process(string origin)
         {
             string res = "";

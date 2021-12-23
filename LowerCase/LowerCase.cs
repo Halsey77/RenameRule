@@ -22,5 +22,11 @@ namespace LowerCase
         {
             return new LowerCase();
         }
+
+
+        IRenameRule IRenameRule.Clone()
+        {
+            return new LowerCase();
+        }
     }
 }
