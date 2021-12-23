@@ -10,10 +10,8 @@ namespace UpperCase
     // viet in hoa
     public class UpperCase : IRenameRule
     {
-        public string Name
-        {
-            get { return "UpperCase"; }
-        }
+        public string Name => "UpperCase";
+
         public string Process(string origin)
         {
             string fileName = Path.GetFileNameWithoutExtension(origin);
