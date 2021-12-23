@@ -1,6 +1,7 @@
 ﻿using RenameRules;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +13,32 @@ namespace Replacer
     {
         public string _needle { get; set; }
         public string _hammer { get; set; }
-        public string Name
+        public string Name => "Replacer";
+
+        public Replacer(string needle, string hammer)
         {
-            get { return "Replacer"; }
+            _needle = needle;
+            _hammer = hammer;
         }
+
+        //Chỉ thay đổi các needle trong tên file. Các needle trong phần mở rộng của file không thay đổi.
         public string Process(string origin)
         {
-            var needle = _needle;
-            var hammer = _hammer;
-            string res = "";
-            // neu chuoi needle khong chua hoac khong ton tai thi khong phai thay the
-            if (!origin.Contains(needle) || String.IsNullOrEmpty(needle))
+            string res = Path.GetFileNameWithoutExtension(origin);
+            if (!String.IsNullOrEmpty(_needle))
             {
-                res = origin;
+                res = res.Replace(_needle, _hammer);
             }
-            else
-            {
-                res = origin.Replace(needle, hammer);
-            }
+            res = res + Path.GetExtension(origin);
             return res;
         }
-        //a b
-      
 
         IRenameRule IRenameRule.Parse(string origin)
         {
             string firstString = origin.Substring(0, origin.IndexOf(' '));
-            _needle= firstString;
-            string secondString=origin.Substring(origin.IndexOf(' ') + 1);  
-            _hammer= secondString;
-            return new Replacer();
+            string secondString=origin.Substring(origin.IndexOf(' ') + 1);
+            
+            return new Replacer(firstString, secondString);
         }
     }
 

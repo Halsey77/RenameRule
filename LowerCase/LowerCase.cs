@@ -9,10 +9,8 @@ namespace LowerCase
 {
     public class LowerCase : IRenameRule
     {
-        public string Name
-        {
-            get { return "LowerCase"; }
-        }
+        public string Name => "LowerCase";
+
         public string Process(string origin)
         {
             string fileName = Path.GetFileNameWithoutExtension(origin);

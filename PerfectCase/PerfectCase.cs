@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Path = System.IO.Path;
 namespace PerfectCase
@@ -16,49 +17,26 @@ namespace PerfectCase
         {
             get { return "PerfectCase"; }
         }
-        /// <summary>
-      
-        /// </summary>
-        /// <param name="origin"></param>
-        /// <returns></returns>
+
         public string Process(string origin)
         {
-
             string res = "";
             string fileName = Path.GetFileNameWithoutExtension(origin);
-            // loai bo khoang trong o dau dong va so 
-            while (!Char.IsLetter(fileName, 0))
-            {
-                fileName = fileName.Remove(0, 1);
-            }
-            while (!Char.IsWhiteSpace(fileName[fileName.Length - 1]))
-            {
-                fileName = fileName.Remove(fileName.Length - 1, 1);
-            }
-            for (int i = 0; i < fileName.Length; i++)
-            {
-                if (i == 0)
-                {
-                    res = res + Char.ToUpper(fileName[i]);
-                }
-                else if (Char.IsWhiteSpace(fileName[i - 1]) && Char.IsLetter(fileName[i]))
-                {
-                    res = res + " " + Char.ToUpper(fileName[i]);
-                }
-                else if (Char.IsWhiteSpace(fileName[i - 1]) && !Char.IsWhiteSpace(fileName[i]))
-                {
-                    res = res + " " + fileName[i];
-                }
-                else if (!Char.IsWhiteSpace(fileName[i]))
-                {
-                    res = res + fileName[i];
-                }
-            }
+
+            //loại bỏ tất cả khoảng trắng ở đầu và cuối
+            res = fileName.Trim();
+
+            //thay đổi những chỗ có 2+ khoảng trắng thành 1 khoảng trắng
+            res = Regex.Replace(res, @"\s{2,}", " ");
+
+            //Viết hoa những chữ cái đầu. Ex: "New line here" => "New Line Here"
+            var regex = new Regex(@"\b[a-z]", RegexOptions.IgnoreCase);
+            res = regex.Replace(res, m => m.ToString().ToUpper());
+
             res = res + Path.GetExtension(origin);
             return res;
-
         }
-       
+
         IRenameRule IRenameRule.Parse(string origin)
         {
             return new PerfectCase();
