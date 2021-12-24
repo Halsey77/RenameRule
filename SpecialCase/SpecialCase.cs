@@ -12,6 +12,11 @@ namespace SpecialCase
             return new SpecialCase();
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         public string Process(string origin)
         {
             return Regex.Replace(origin, @"^(\s*[^\s])", m => m.ToString().ToUpper());

@@ -14,12 +14,14 @@ namespace Replacer
         public string _needle { get; set; }
         public string _hammer { get; set; }
         public string Name => "Replacer";
+
         public Replacer()
         {
             _needle = "";
             _hammer = "";
         }
-        public Replacer(string needle, string hammer)
+
+        public Replacer(string needle = "", string hammer = "")
         {
             _needle = needle;
             _hammer = hammer;
@@ -49,7 +51,10 @@ namespace Replacer
         {
             return new Replacer(_needle,_hammer);
         }
-    }
 
-  
+        public override string ToString()
+        {
+            return Name + " " + _needle + " " + _hammer;
+        }
+    }
 }

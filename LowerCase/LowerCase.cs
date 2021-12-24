@@ -28,5 +28,10 @@ namespace LowerCase
         {
             return new LowerCase();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

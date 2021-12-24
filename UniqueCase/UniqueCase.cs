@@ -26,5 +26,10 @@ namespace UniqueCase
         {
             return new UniqueCase();
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

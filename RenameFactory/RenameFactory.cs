@@ -20,23 +20,19 @@ namespace RenameFactory
             {
                 return _prototypes[choice].Parse(choice);
             }
-          
-            else
-            {
-                string firstWord = choice.Substring(0, choice.IndexOf(' '));
-                string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
-                return _prototypes[firstWord].Parse(choice1);
-            }
-            // LAY CHU DAU , NEU CHU DAU =
-            // STRING CHOICE1
-            // _pROTOTYPES[[choice - 1].pARSE(CHOICE- CHOICE1);
+
+            string firstWord = choice.Substring(0, choice.IndexOf(' '));
+            string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
+            return _prototypes[firstWord].Parse(choice1);
         }
+
         public static RenameFactory  getInstance()
         {
             if (_instance == null)
                 _instance = new RenameFactory();
             return _instance;
         }
+
         RenameFactory()
         {
             _prototypes = new Dictionary<string, IRenameRule>();
@@ -47,8 +43,7 @@ namespace RenameFactory
             {
                 var assembly = Assembly.LoadFile(dll.FullName);
                 var types = assembly.GetTypes();
-               
-
+                
                 foreach (var type in types)
                 {
                     Debug.WriteLine(type);
@@ -56,10 +51,10 @@ namespace RenameFactory
                     {
                         if (typeof(IRenameRule).IsAssignableFrom(type))
                         {
-                            var shape = Activator.CreateInstance(type) as IRenameRule;
-                            if (shape != null)
+                            var rule = Activator.CreateInstance(type) as IRenameRule;
+                            if (rule != null)
                             {
-                                _prototypes.Add(shape.Name, shape);
+                                _prototypes.Add(rule.Name, rule);
                             }
                         }
                     }
