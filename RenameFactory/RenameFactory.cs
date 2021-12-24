@@ -16,14 +16,26 @@ namespace RenameFactory
         static RenameFactory _instance = null;
         public IRenameRule Create(string choice)
         {
-            if(choice.IndexOf(' ')==-1)
+            if(choice=="")
+            {
+                return null;
+            }
+            if (choice.IndexOf(' ') == -1&& choice.IndexOf('-')==-1)
             {
                 return _prototypes[choice].Parse(choice);
             }
-
-            string firstWord = choice.Substring(0, choice.IndexOf(' '));
-            string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
-            return _prototypes[firstWord].Parse(choice1);
+            else if (choice.IndexOf('-') == -1)
+            {
+                string firstWord = choice.Substring(0, choice.IndexOf(' '));
+                string choice1 = choice.Substring(choice.IndexOf(' ') + 1);
+                return _prototypes[firstWord].Parse(choice1);
+            }
+            else
+            {
+                string firstWord = choice.Substring(0, choice.IndexOf('-'));
+                string choice1 = choice.Substring(choice.IndexOf('-') + 1);
+                return _prototypes[firstWord].Parse(choice1);
+            }
         }
 
         public static RenameFactory  getInstance()
