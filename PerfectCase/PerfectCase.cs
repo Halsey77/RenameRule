@@ -13,14 +13,16 @@ namespace PerfectCase
     // viet hoa sau " "neu la chu cai
     public class PerfectCase : IRenameRule
     {
-        public string Name
-        {
-            get { return "PerfectCase"; }
-        }
+        public string Name => "PerfectCase";
 
         public IRenameRule Clone()
         {
             return new PerfectCase();
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public string Process(string origin)

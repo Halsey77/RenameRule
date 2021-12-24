@@ -8,17 +8,11 @@ namespace RenameRules
 {
     public interface IRenameRule
     {
-        string Process(string origin);
-        //void Parser(string origin1);
-
         string Name { get; }
 
-        //void Parser(string line);
-
-         IRenameRule Parse(string origin);
-
-         IRenameRule Clone();
-
+        string Process(string origin);
+        IRenameRule Parse(string origin);
+        IRenameRule Clone();
     }
    
 }
