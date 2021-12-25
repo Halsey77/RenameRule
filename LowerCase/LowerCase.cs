@@ -14,6 +14,7 @@ namespace LowerCase
         public string Process(string origin)
         {
             string fileName = Path.GetFileNameWithoutExtension(origin);
+            fileName = fileName.Replace(" ", String.Empty);
             string res = fileName.ToLower() + Path.GetExtension(origin);
             return res;
         }
