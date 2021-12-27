@@ -30,7 +30,7 @@ namespace ExtensionCase
 
         public override string ToString()
         {
-            return Name;
+            return Name + _Extension;
         }
 
         public string Process(string origin)
@@ -43,9 +43,7 @@ namespace ExtensionCase
 
         IRenameRule IRenameRule.Parse(string origin)
         {
-
             return new ExtensionCase(origin);
-
         }
     }
 }
