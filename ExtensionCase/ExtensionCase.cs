@@ -30,7 +30,7 @@ namespace ExtensionCase
 
         public override string ToString()
         {
-            return Name + _Extension;
+            return Name + " " + _Extension;
         }
 
         public string Process(string origin)
