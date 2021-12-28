@@ -1,6 +1,5 @@
 ﻿using RenameRules;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace SuffixCase
 {
@@ -30,7 +29,7 @@ namespace SuffixCase
 
         public override string ToString()
         {
-            return Name;
+            return Name + " " + _suffix;
         }
 
         public string Process(string origin)
@@ -43,9 +42,7 @@ namespace SuffixCase
 
         IRenameRule IRenameRule.Parse(string origin)
         {
-
             return new SuffixCase(origin);
-
         }
     }
 }

@@ -30,7 +30,7 @@ namespace PrefixCase
 
         public override string ToString()
         {
-            return Name;
+            return Name + " " + _prefix;
         }
 
         public string Process(string origin)
