@@ -41,7 +41,7 @@ namespace RenameFactory
         {
             _prototypes = new Dictionary<string, IRenameRule>();
             var exeFolder = AppDomain.CurrentDomain.BaseDirectory;
-            var dlls = new DirectoryInfo(exeFolder).GetFiles("*.dll");x`
+            var dlls = new DirectoryInfo(exeFolder).GetFiles("*.dll");
 
             foreach (var dll in dlls)
             {
